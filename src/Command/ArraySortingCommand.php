@@ -39,7 +39,7 @@ class ArraySortingCommand extends AbstractCommand
 
     /**
      * Command php bin/console app:array-sort 1 100
-     *  - first param - sorting type
+     *  - first param - sorting type (1 - "bubble", 2 - "inserts", 3 - "selection")
      *  - second param - array size
      *
      * @param InputInterface $input
@@ -51,13 +51,13 @@ class ArraySortingCommand extends AbstractCommand
     {
         switch ($input->getArgument('mode')) {
             case self::TYPE_INSERTS:
-                $type = AlgorithmHelper::TYPE_SORTING_INSERTS;
+                $algorithm = AlgorithmHelper::TYPE_SORTING_INSERTS;
                 break;
             case self::TYPE_SELECTION:
-                $type = AlgorithmHelper::TYPE_SORTING_SELECTION;
+                $algorithm = AlgorithmHelper::TYPE_SORTING_SELECTION;
                 break;
             default:
-                $type = AlgorithmHelper::TYPE_SORTING_BUBBLE;
+                $algorithm = AlgorithmHelper::TYPE_SORTING_BUBBLE;
                 break;
         }
 
@@ -65,9 +65,14 @@ class ArraySortingCommand extends AbstractCommand
         if ($size === 0) {
             $size = 10;
         }
-        $sorter = $this->sorterService->getSorter($size);
+        $sorter = $this->sorterService->getSorter($size, $algorithm);
+
+        $output->writeln(sprintf('> Sorting %s-items array using "%s" algorithm...', $size, $algorithm));
+
         $sorted = $sorter->getSorted();
-        dd(count($sorted), $sorted[0], $sorted[$size - 1]);
+
+        $output->writeln(sprintf('> Array sorted. First elem: %s, last elem: %s', $sorted[0], $sorted[$size - 1]));
+        $output->writeln(sprintf('> Results of %s: %s (%s)', $size, $sorter->getIterationsCount(), $sorter->getRuntime()));
 
         return 0;
     }
