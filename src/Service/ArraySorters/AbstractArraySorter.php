@@ -5,6 +5,7 @@ namespace App\Service\ArraySorters;
 abstract class AbstractArraySorter implements ArraySorterInterface
 {
     protected $array;
+    protected $arraySize;
     protected $iterationsCount = 0;
     protected $runtime = 0;
 
@@ -21,6 +22,14 @@ abstract class AbstractArraySorter implements ArraySorterInterface
         $this->sort();
         $this->runtime = microtime(true) - $startTime;
         return $this->array;
+    }
+
+    public function getArraySize(): int
+    {
+        if ($this->arraySize === null) {
+            $this->arraySize = count($this->array);
+        }
+        return $this->arraySize;
     }
 
     public function getIterationsCount(): int
