@@ -15,7 +15,7 @@ class BubbleSorter extends AbstractArraySorter
             $isSorted = true;
             $lastIndex = $size - $j - 1;
             for ($i = 0; $i < $lastIndex; $i++) {
-                $this->iterationsCount++;
+                //$this->iterationsCount++;
                 $nexIndex = $i + 1;
                 if ($this->array[$i] >= $this->array[$nexIndex]) {
                     $currentElem = $this->array[$i];

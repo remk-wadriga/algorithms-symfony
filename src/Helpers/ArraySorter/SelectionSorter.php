@@ -12,7 +12,7 @@ class SelectionSorter extends AbstractArraySorter
             $minVal = $this->array[$j];
             $minValPos = $j;
             for ($i = $j + 1; $i < $size; $i++) {
-                $this->iterationsCount++;
+                //$this->iterationsCount++;
                 if ($this->array[$i] < $minVal) {
                     $minVal = $this->array[$i];
                     $minValPos = $i;
