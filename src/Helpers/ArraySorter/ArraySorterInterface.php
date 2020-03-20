@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\ArraySorters;
+namespace App\Helpers\ArraySorter;
 
 interface ArraySorterInterface
 {
@@ -10,5 +10,5 @@ interface ArraySorterInterface
 
     public function getIterationsCount(): int;
 
-    public function getRuntime(): int;
+    public function getRuntime(): string;
 }

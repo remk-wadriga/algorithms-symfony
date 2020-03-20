@@ -71,11 +71,11 @@ class ArraySortingCommand extends AbstractCommand
 
         $sorted = $sorter->getSorted();
 
+        // Bubbles.     10: 45 (0.000023), 100: 4950 (0.000657), 1000: 499499 (0.059985), 10000: 49995000 (6.070219), 100000: 4999949994 (627.978346)
+        // Inserts.     10: 21 (0.000006), 100: 2174 (0.000276), 1000: 245271 (0.027567), 10000: 24767003 (2.739803), 100000: 2501300562 (278.207454)
+        // Selection.   10: 45 (0.000020), 100: 4950 (0.000253), 1000: 499500 (0.021427), 10000: 49995000 (2.084112), 100000: 4999950000 (206.039659)
         $output->writeln(sprintf('> Array sorted. First elem: %s, last elem: %s', $sorted[0], $sorted[$size - 1]));
         $output->writeln(sprintf('> Results of %s: %s (%s)', $size, $sorter->getIterationsCount(), $sorter->getRuntime()));
-
-        // Bubbles. 10: 45 (0), 100: 4950 (0), 1000: 499499 (0), 10000: 49995000 (4),
-        // Inserts.
 
         return 0;
     }

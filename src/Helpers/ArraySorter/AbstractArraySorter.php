@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Service\ArraySorters;
+namespace App\Helpers\ArraySorter;
+
+use App\Helpers\IntegerHelper;
 
 abstract class AbstractArraySorter implements ArraySorterInterface
 {
@@ -11,7 +13,7 @@ abstract class AbstractArraySorter implements ArraySorterInterface
 
     public function __construct(array &$array)
     {
-        $this->array = &$array;
+        $this->array = $array;
     }
 
     abstract public function sort(): ArraySorterInterface;
@@ -37,8 +39,8 @@ abstract class AbstractArraySorter implements ArraySorterInterface
         return $this->iterationsCount;
     }
 
-    public function getRuntime(): int
+    public function getRuntime(): string
     {
-        return $this->runtime;
+        return IntegerHelper::float2string($this->runtime);
     }
 }

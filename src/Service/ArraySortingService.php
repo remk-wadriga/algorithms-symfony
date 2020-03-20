@@ -5,8 +5,8 @@ namespace App\Service;
 use App\Exception\ArraySortingException;
 use App\Helpers\AlgorithmHelper;
 use App\Helpers\ArrayHelper;
-use App\Service\ArraySorters\ArraySorterFactory;
-use App\Service\ArraySorters\ArraySorterInterface;
+use App\Helpers\ArraySorter\ArraySorterFactory;
+use App\Helpers\ArraySorter\ArraySorterInterface;
 
 class ArraySortingService extends AbstractService
 {

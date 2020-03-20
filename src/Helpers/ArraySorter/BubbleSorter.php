@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\ArraySorters;
+namespace App\Helpers\ArraySorter;
 
 class BubbleSorter extends AbstractArraySorter
 {
@@ -10,7 +10,6 @@ class BubbleSorter extends AbstractArraySorter
     public function sort(): ArraySorterInterface
     {
         $size = $this->getArraySize();
-        $array = &$this->array;
 
         for ($j = 0; $j < $size; $j++) {
             $isSorted = true;
@@ -18,10 +17,10 @@ class BubbleSorter extends AbstractArraySorter
             for ($i = 0; $i < $lastIndex; $i++) {
                 $this->iterationsCount++;
                 $nexIndex = $i + 1;
-                if ($array[$i] >= $array[$nexIndex]) {
-                    $currentElem = $array[$i];
-                    $array[$i] = $array[$nexIndex];
-                    $array[$nexIndex] = $currentElem;
+                if ($this->array[$i] >= $this->array[$nexIndex]) {
+                    $currentElem = $this->array[$i];
+                    $this->array[$i] = $this->array[$nexIndex];
+                    $this->array[$nexIndex] = $currentElem;
                     $isSorted = false;
                 }
             }

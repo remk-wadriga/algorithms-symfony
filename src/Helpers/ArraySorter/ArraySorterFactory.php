@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\ArraySorters;
+namespace App\Helpers\ArraySorter;
 
 use App\Exception\ServiceException;
 use App\Helpers\AlgorithmHelper;
