@@ -4,7 +4,7 @@ namespace App\Helpers\File;
 
 use App\Exception\FileException;
 
-class ImageCreator extends FileCreatorAbstract
+class ImageCreatorFileCreator extends AbstractFileCreator
 {
     private $defaultSize = '600x400';
 

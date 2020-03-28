@@ -12,9 +12,9 @@ class FileCreatorFactory
     const EXT_PNG = 'png';
 
     private static $_classesMap = [
-        self::EXT_JPG => ImageCreator::class,
-        self::EXT_JPEG => ImageCreator::class,
-        self::EXT_PNG => ImageCreator::class,
+        self::EXT_JPG => ImageCreatorFileCreator::class,
+        self::EXT_JPEG => ImageCreatorFileCreator::class,
+        self::EXT_PNG => ImageCreatorFileCreator::class,
     ];
 
     public static function createFileCreator(string $directory, string $fileName, string $data): FileCreatorInterface
@@ -26,8 +26,8 @@ class FileCreatorFactory
         }
 
         $creatorClass = self::$_classesMap[$ext];
-        if (!is_subclass_of($creatorClass, FileCreatorAbstract::class)) {
-            throw new ServiceException(sprintf('File creator must instance of %s abstract class, but it does not. Creator class: %s', FileCreatorAbstract::class, $creatorClass), ServiceException::CODE_INVALID_CONFIG);
+        if (!is_subclass_of($creatorClass, AbstractFileCreator::class)) {
+            throw new ServiceException(sprintf('File creator must instance of %s abstract class, but it does not. Creator class: %s', AbstractFileCreator::class, $creatorClass), ServiceException::CODE_INVALID_CONFIG);
         }
 
         return new $creatorClass($directory, $fileName, $data);

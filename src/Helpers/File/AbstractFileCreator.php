@@ -4,7 +4,7 @@ namespace App\Helpers\File;
 
 use App\Exception\ServiceException;
 
-abstract class FileCreatorAbstract implements FileCreatorInterface
+abstract class AbstractFileCreator implements FileCreatorInterface
 {
     protected $dir;
     protected $fileName;
