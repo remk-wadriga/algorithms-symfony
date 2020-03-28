@@ -11,8 +11,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ArraySortingCommand extends AbstractCommand
 {
     const TYPE_BUBBLE = 1;
-    const TYPE_INSERTS = 2;
-    const TYPE_SELECTION = 3;
+    const TYPE_GNOME = 2;
+    const TYPE_INSERTS = 3;
+    const TYPE_SELECTION = 4;
 
     protected static $defaultName = 'app:array-sort';
 
@@ -39,7 +40,7 @@ class ArraySortingCommand extends AbstractCommand
 
     /**
      * Command php bin/console app:array-sort 1 100
-     *  - first param - sorting type (1 - "bubble", 2 - "inserts", 3 - "selection")
+     *  - first param - sorting type (1 - "bubble", 2 - "gnome", 3 - "inserts", 4 - "selection")
      *  - second param - array size
      *
      * @param InputInterface $input
@@ -50,6 +51,9 @@ class ArraySortingCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         switch ($input->getArgument('mode')) {
+            case self::TYPE_GNOME:
+                $algorithm = AlgorithmHelper::TYPE_SORTING_GNOME;
+                break;
             case self::TYPE_INSERTS:
                 $algorithm = AlgorithmHelper::TYPE_SORTING_INSERTS;
                 break;
@@ -72,6 +76,7 @@ class ArraySortingCommand extends AbstractCommand
         $sorted = $sorter->getSorted();
 
         // Bubbles.     10: 45 (0.000021), 100: 4950 (0.000511), 1000: 499499 (0.049860), 10000: 49995000 (5.009871), 100000: 4999949994 (500.853912)
+        // Gnome.       10: 28 (0.000020), 100: 2271 (0.000324), 1000: 246265 (0.032683), 10000: 24776991 (3.324250), 100000: 2501400549 (330.305371)
         // Inserts.     10: 21 (0.000020), 100: 2174 (0.000232), 1000: 245271 (0.022502), 10000: 24767003 (2.247104), 100000: 2501300562 (225.239058)
         // Selection.   10: 45 (0.000019), 100: 4950 (0.000143), 1000: 499500 (0.010860), 10000: 49995000 (1.008008), 100000: 4999950000 (100.108101)
         $output->writeln(sprintf('> Array sorted. First elem: %s, last elem: %s', $sorted[0], $sorted[$size - 1]));

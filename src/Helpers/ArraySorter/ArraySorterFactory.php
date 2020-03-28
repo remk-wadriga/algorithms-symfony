@@ -9,6 +9,7 @@ class ArraySorterFactory
 {
     private static $_classesMap = [
         AlgorithmHelper::TYPE_SORTING_BUBBLE => BubbleSorter::class,
+        AlgorithmHelper::TYPE_SORTING_GNOME => GnomeSorter::class,
         AlgorithmHelper::TYPE_SORTING_INSERTS => InsertionSorter::class,
         AlgorithmHelper::TYPE_SORTING_SELECTION => SelectionSorter::class,
     ];
