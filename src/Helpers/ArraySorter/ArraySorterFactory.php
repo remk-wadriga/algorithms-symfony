@@ -12,6 +12,7 @@ class ArraySorterFactory
         AlgorithmHelper::TYPE_SORTING_GNOME => GnomeSorter::class,
         AlgorithmHelper::TYPE_SORTING_INSERTS => InsertionSorter::class,
         AlgorithmHelper::TYPE_SORTING_SELECTION => SelectionSorter::class,
+        AlgorithmHelper::TYPE_SORTING_QUICK => QuickSorter::class,
     ];
 
     public static function createSorter(string $type, array $array): ArraySorterInterface
