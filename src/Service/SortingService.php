@@ -2,13 +2,12 @@
 
 namespace App\Service;
 
-use App\Exception\ArraySortingException;
 use App\Helpers\AlgorithmHelper;
 use App\Helpers\ArrayHelper;
 use App\Helpers\Sorter\Factory;
 use App\Helpers\Sorter\SorterInterface;
 
-class ArraySortingService extends AbstractService
+class SortingService extends AbstractService
 {
     protected $defaultType = AlgorithmHelper::TYPE_SORTING_BUBBLE;
 

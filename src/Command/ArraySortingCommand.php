@@ -3,7 +3,7 @@
 namespace App\Command;
 
 use App\Helpers\AlgorithmHelper;
-use App\Service\ArraySortingService;
+use App\Service\SortingService;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,11 +21,11 @@ class ArraySortingCommand extends AbstractCommand
     protected $mode;
 
     /**
-     * @var ArraySortingService
+     * @var SortingService
      */
     protected $sorterService;
 
-    public function __construct(ArraySortingService $sorterService, string $name = null)
+    public function __construct(SortingService $sorterService, string $name = null)
     {
         $this->sorterService = $sorterService;
         parent::__construct($name);
