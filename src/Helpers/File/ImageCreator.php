@@ -4,11 +4,11 @@ namespace App\Helpers\File;
 
 use App\Exception\FileException;
 
-class ImageCreatorFileCreator extends AbstractFileCreator
+class ImageCreator extends AbstractCreator
 {
     private $defaultSize = '600x400';
 
-    public function create(string $size = null): FileEntity
+    public function create(string $size = null): Entity
     {
         if ($size === null) {
             $size = $this->defaultSize;
@@ -27,7 +27,7 @@ class ImageCreatorFileCreator extends AbstractFileCreator
             file_put_contents($this->file->path, $this->data);
         }
 
-        FileHelper::cropImage($this->file, $x, $y);
+        Helper::cropImage($this->file, $x, $y);
 
         return $this->file;
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Helpers\ArraySorter;
+namespace App\Helpers\Sorter;
 
 use App\Helpers\IntegerHelper;
 
-abstract class AbstractArraySorter implements ArraySorterInterface
+abstract class AbstractSorter implements SorterInterface
 {
     protected $array;
     protected $arraySize;
@@ -16,7 +16,7 @@ abstract class AbstractArraySorter implements ArraySorterInterface
         $this->array = $array;
     }
 
-    abstract public function sort(): ArraySorterInterface;
+    abstract public function sort(): SorterInterface;
 
     public function getSorted(): array
     {

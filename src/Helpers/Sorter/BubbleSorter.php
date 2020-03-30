@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Helpers\ArraySorter;
+namespace App\Helpers\Sorter;
 
-class BubbleSorter extends AbstractArraySorter
+class BubbleSorter extends AbstractSorter
 {
     /**
      * @return self
      */
-    public function sort(): ArraySorterInterface
+    public function sort(): SorterInterface
     {
         $size = $this->getArraySize();
 

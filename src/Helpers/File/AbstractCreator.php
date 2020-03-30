@@ -4,14 +4,14 @@ namespace App\Helpers\File;
 
 use App\Exception\ServiceException;
 
-abstract class AbstractFileCreator implements FileCreatorInterface
+abstract class AbstractCreator implements CreatorInterface
 {
     protected $dir;
     protected $fileName;
     protected $data;
     protected $ext;
     protected $path;
-    /** @var FileEntity */
+    /** @var Entity */
     protected $file;
 
     public function __construct(string $directory, string $fileName, string $data)
@@ -19,7 +19,7 @@ abstract class AbstractFileCreator implements FileCreatorInterface
         $this->setDir($directory);
         $this->setFileName($fileName);
         $this->setData($data);
-        $this->file = new FileEntity($this->path, $this->ext);
+        $this->file = new Entity($this->path, $this->ext);
     }
 
     public function setDir(string $directory)
@@ -32,7 +32,7 @@ abstract class AbstractFileCreator implements FileCreatorInterface
 
     public function setFileName(string $fileName)
     {
-        $ext = FileHelper::getExt($fileName);
+        $ext = Helper::getExt($fileName);
         if ($ext === null) {
             throw new ServiceException(sprintf('File name "%s" doesn\'t have extension', $fileName), ServiceException::CODE_INVALID_PARAMS);
         }
@@ -52,9 +52,9 @@ abstract class AbstractFileCreator implements FileCreatorInterface
             throw new ServiceException(sprintf('File name "%s" doesn\'t have extension', $this->fileName), ServiceException::CODE_INVALID_PARAMS);
         }
         $this->data = $data;
-        $fastHash = FileHelper::getFastHash($this->data);
+        $fastHash = Helper::getFastHash($this->data);
         if (strpos($this->fileName, $fastHash) !== 0) {
-            $this->fileName = FileHelper::getFastHash($this->data) . '.' . $this->ext;
+            $this->fileName = Helper::getFastHash($this->data) . '.' . $this->ext;
         }
         $this->path = str_replace(['\\', '\\\\', '/', '//', '\\/', '/\\'], DIRECTORY_SEPARATOR, $this->dir . DIRECTORY_SEPARATOR . $this->fileName);
     }
@@ -69,7 +69,7 @@ abstract class AbstractFileCreator implements FileCreatorInterface
         return $this->fileName;
     }
 
-    public function getFile(): FileEntity
+    public function getFile(): Entity
     {
         return $this->file;
     }

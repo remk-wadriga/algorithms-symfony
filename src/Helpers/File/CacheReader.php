@@ -4,7 +4,8 @@ namespace App\Helpers\File;
 
 use App\Exception\FileException;
 
-class JsonFileReader extends AbstractFileReader
+
+class CacheReader extends AbstractReader
 {
     public function readFile($requiredAttributes = []): array
     {
@@ -16,12 +17,13 @@ class JsonFileReader extends AbstractFileReader
             throw new FileException(sprintf('File %s is not readable', $this->file->path), FileException::NOT_READABLE);
         }
 
-        $data = json_decode(file_get_contents($this->file->path), true);
+        $data = unserialize(file_get_contents($this->file->path));
         return $this->file->data = $data !== null ? $data : [];
     }
 
     public function convertData(array $data): string
     {
-        return json_encode($data);
+        return serialize($data);
     }
+
 }

@@ -2,11 +2,11 @@
 
 namespace App\Helpers\File;
 
-interface FileReaderInterface
+interface ReaderInterface
 {
     public function readFile($requiredAttributes = []): array;
 
     public function writeData(array $data);
 
-    public function getFile(): FileEntity;
+    public function getFile(): Entity;
 }

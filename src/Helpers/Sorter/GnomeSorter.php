@@ -1,19 +1,19 @@
 <?php
 
 
-namespace App\Helpers\ArraySorter;
+namespace App\Helpers\Sorter;
 
 
-class GnomeSorter extends AbstractArraySorter
+class GnomeSorter extends AbstractSorter
 {
     /**
      * Алгоритм смотрит на текущий и предыдущий элементы: если они в правильном порядке,
      * он шагает на один элемент вперёд, иначе он меняет их местами и шагает на один элемент назад.
      * Граничные условия: если нет предыдущего элемента, он шагает вперёд; если нет следующего, он закончил
      *
-     * @return ArraySorterInterface
+     * @return SorterInterface
      */
-    public function sort(): ArraySorterInterface
+    public function sort(): SorterInterface
     {
         $size = $this->getArraySize();
         $i = 1;

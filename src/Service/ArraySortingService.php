@@ -5,8 +5,8 @@ namespace App\Service;
 use App\Exception\ArraySortingException;
 use App\Helpers\AlgorithmHelper;
 use App\Helpers\ArrayHelper;
-use App\Helpers\ArraySorter\ArraySorterFactory;
-use App\Helpers\ArraySorter\ArraySorterInterface;
+use App\Helpers\Sorter\Factory;
+use App\Helpers\Sorter\SorterInterface;
 
 class ArraySortingService extends AbstractService
 {
@@ -15,15 +15,15 @@ class ArraySortingService extends AbstractService
     /**
      * @param int $arraySize
      * @param string|null $type
-     * @return ArraySorterInterface
+     * @return SorterInterface
      * @throws \App\Exception\ServiceException
      */
-    public function getSorter(int $arraySize = 100, string $type = null): ArraySorterInterface
+    public function getSorter(int $arraySize = 100, string $type = null): SorterInterface
     {
         if ($type === null) {
             $type = $this->defaultType;
         }
-        return ArraySorterFactory::createSorter($type, $this->getArray($arraySize));
+        return Factory::createSorter($type, $this->getArray($arraySize));
     }
 
     public function getArray(int $length = 100, int $min = null, int $max = null): array

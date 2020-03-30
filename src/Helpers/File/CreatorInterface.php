@@ -2,7 +2,7 @@
 
 namespace App\Helpers\File;
 
-interface FileCreatorInterface
+interface CreatorInterface
 {
     public function setDir(string $directory);
 
@@ -14,7 +14,7 @@ interface FileCreatorInterface
 
     public function getName(): string;
 
-    public function create(string $size = null): FileEntity;
+    public function create(string $size = null): Entity;
 
-    public function getFile(): FileEntity;
+    public function getFile(): Entity;
 }

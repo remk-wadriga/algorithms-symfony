@@ -4,7 +4,7 @@ namespace App\Helpers\File;
 
 use App\Exception\ServiceException;
 
-class FileHelper
+class Helper
 {
     public static function getExt($file)
     {
@@ -34,7 +34,7 @@ class FileHelper
         }
     }
 
-    public static function cropImage(FileEntity $file, $newWidth, $newHeight, $newImageFile = null, $currentWidth = null, $currentHeight = null)
+    public static function cropImage(Entity $file, $newWidth, $newHeight, $newImageFile = null, $currentWidth = null, $currentHeight = null)
     {
         if (!file_exists($file->path) && $file->data === null) {
             throw new ServiceException(sprintf('File "%s" does not exists and file data not given', $file->path), ServiceException::CODE_INVALID_CONFIG);

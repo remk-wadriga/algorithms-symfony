@@ -4,7 +4,7 @@ namespace App\Helpers\File;
 
 use App\Exception\FileException;
 
-class CsvFileReader extends AbstractFileReader
+class CsvReader extends AbstractReader
 {
     protected $sep = ';';
 

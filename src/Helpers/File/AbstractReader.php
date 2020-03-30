@@ -2,17 +2,17 @@
 
 namespace App\Helpers\File;
 
-abstract class AbstractFileReader implements FileReaderInterface
+abstract class AbstractReader implements ReaderInterface
 {
-    /** @var FileEntity */
+    /** @var Entity */
     protected $file;
 
     public function __construct(string $file, string $ext)
     {
-        $this->file = new FileEntity($file, $ext);
+        $this->file = new Entity($file, $ext);
     }
 
-    public function getFile(): FileEntity
+    public function getFile(): Entity
     {
         return $this->file;
     }

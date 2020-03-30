@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Helpers\ArraySorter;
+namespace App\Helpers\Sorter;
 
 use App\Exception\ServiceException;
 use App\Helpers\AlgorithmHelper;
 
-class ArraySorterFactory
+class Factory
 {
     private static $_classesMap = [
         AlgorithmHelper::TYPE_SORTING_BUBBLE => BubbleSorter::class,
@@ -15,11 +15,11 @@ class ArraySorterFactory
         AlgorithmHelper::TYPE_SORTING_QUICK => QuickSorter::class,
     ];
 
-    public static function createSorter(string $type, array $array): ArraySorterInterface
+    public static function createSorter(string $type, array $array): SorterInterface
     {
         $sorterClass = self::$_classesMap[$type];
-        if (!is_subclass_of($sorterClass, AbstractArraySorter::class)) {
-            throw new ServiceException(sprintf('Array sorter must instance of %s abstract class, but it does not. Sorter class: %s', AbstractArraySorter::class, $sorterClass), ServiceException::CODE_INVALID_CONFIG);
+        if (!is_subclass_of($sorterClass, AbstractSorter::class)) {
+            throw new ServiceException(sprintf('Array sorter must instance of %s abstract class, but it does not. Sorter class: %s', AbstractSorter::class, $sorterClass), ServiceException::CODE_INVALID_CONFIG);
         }
 
         return new $sorterClass($array);

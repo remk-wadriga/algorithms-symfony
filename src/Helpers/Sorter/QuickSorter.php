@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Helpers\ArraySorter;
+namespace App\Helpers\Sorter;
 
-class QuickSorter extends AbstractArraySorter
+class QuickSorter extends AbstractSorter
 {
-    public function sort(): ArraySorterInterface
+    public function sort(): SorterInterface
     {
         usort($this->array, function($val1, $val2) {
             //$this->iterationsCount++;

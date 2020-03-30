@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Helpers\ArraySorter;
+namespace App\Helpers\Sorter;
 
-interface ArraySorterInterface
+interface SorterInterface
 {
     public function getSorted(): array;
 

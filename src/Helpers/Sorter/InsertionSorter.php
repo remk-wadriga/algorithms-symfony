@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Helpers\ArraySorter;
+namespace App\Helpers\Sorter;
 
-class InsertionSorter extends AbstractArraySorter
+class InsertionSorter extends AbstractSorter
 {
-    public function sort(): ArraySorterInterface
+    public function sort(): SorterInterface
     {
         $size = $this->getArraySize();
 

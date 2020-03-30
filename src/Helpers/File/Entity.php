@@ -2,7 +2,7 @@
 
 namespace App\Helpers\File;
 
-class FileEntity
+class Entity
 {
     public $path;
 
