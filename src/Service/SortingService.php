@@ -14,15 +14,17 @@ class SortingService extends AbstractService
     /**
      * @param int $arraySize
      * @param string|null $type
+     * @param int|null $min
+     * @param int|null $max
      * @return SorterInterface
      * @throws \App\Exception\ServiceException
      */
-    public function getSorter(int $arraySize = 100, string $type = null): SorterInterface
+    public function getSorter(int $arraySize = 100, string $type = null, int $min = null, int $max = null): SorterInterface
     {
         if ($type === null) {
             $type = $this->defaultType;
         }
-        return Factory::createSorter($type, $this->getArray($arraySize));
+        return Factory::createSorter($type, $this->getArray($arraySize, $min, $max));
     }
 
     public function getArray(int $length = 100, int $min = null, int $max = null): array

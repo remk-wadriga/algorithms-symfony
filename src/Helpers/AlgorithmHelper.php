@@ -9,6 +9,7 @@ class AlgorithmHelper
     const TYPE_SORTING_INSERTS = 'sorting_inserts';
     const TYPE_SORTING_GNOME = 'sorting_gnome';
     const TYPE_SORTING_QUICK = 'sorting_quick';
+    const TYPE_SORTING_QUICK_STABLE = 'sorting_quick_stable';
 
     public static $sortingTypes =  [
         self::TYPE_SORTING_BUBBLE,
@@ -16,5 +17,6 @@ class AlgorithmHelper
         self::TYPE_SORTING_SELECTION,
         self::TYPE_SORTING_GNOME,
         self::TYPE_SORTING_QUICK,
+        self::TYPE_SORTING_QUICK_STABLE,
     ];
 }

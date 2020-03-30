@@ -13,6 +13,7 @@ class Factory
         AlgorithmHelper::TYPE_SORTING_INSERTS => InsertionSorter::class,
         AlgorithmHelper::TYPE_SORTING_SELECTION => SelectionSorter::class,
         AlgorithmHelper::TYPE_SORTING_QUICK => QuickSorter::class,
+        AlgorithmHelper::TYPE_SORTING_QUICK_STABLE => QuickStableSorter::class,
     ];
 
     public static function createSorter(string $type, array $array): SorterInterface
