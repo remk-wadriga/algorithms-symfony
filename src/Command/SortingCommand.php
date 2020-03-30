@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ArraySortingCommand extends AbstractCommand
+class SortingCommand extends AbstractCommand
 {
     const TYPE_BUBBLE = 1;
     const TYPE_GNOME = 2;
@@ -16,7 +16,7 @@ class ArraySortingCommand extends AbstractCommand
     const TYPE_SELECTION = 4;
     const TYPE_QUICK = 5;
 
-    protected static $defaultName = 'app:array-sort';
+    protected static $defaultName = 'app:sort';
 
     protected $mode;
 
@@ -40,7 +40,7 @@ class ArraySortingCommand extends AbstractCommand
     }
 
     /**
-     * Command php bin/console app:array-sort 1 100
+     * Command php bin/console app:sort 1 100
      *  - first param - sorting type (1 - "bubble", 2 - "gnome", 3 - "inserts", 4 - "selection", 5 - "quick")
      *  - second param - array size
      *
