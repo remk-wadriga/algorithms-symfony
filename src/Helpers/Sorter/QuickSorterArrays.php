@@ -2,7 +2,7 @@
 
 namespace App\Helpers\Sorter;
 
-class QuickStableSorter extends AbstractSorter
+class QuickSorterArrays extends AbstractSorter
 {
     public function sort(): SorterInterface
     {
@@ -19,7 +19,7 @@ class QuickStableSorter extends AbstractSorter
             return;
         }
 
-        $baseValue = $inputArray[$size / 2];
+        $baseValue = $inputArray[(int)($size / 2)];
 
         $smaller = [];
         $equal = [];

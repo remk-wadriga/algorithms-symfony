@@ -10,6 +10,7 @@ abstract class AbstractSorter implements SorterInterface
     protected $arraySize;
     protected $iterationsCount = 0;
     protected $runtime = 0;
+    protected $usedMemory = 0;
 
     public function __construct(array &$array)
     {
@@ -18,10 +19,17 @@ abstract class AbstractSorter implements SorterInterface
 
     abstract public function sort(): SorterInterface;
 
+    public function getArray(): array
+    {
+        return  $this->array;
+    }
+
     public function getSorted(): array
     {
         $startTime = microtime(true);
+        $startMemory = memory_get_usage(true);
         $this->sort();
+        $this->usedMemory -= $startMemory;
         $this->runtime = microtime(true) - $startTime;
         return $this->array;
     }
@@ -42,5 +50,13 @@ abstract class AbstractSorter implements SorterInterface
     public function getRuntime(): string
     {
         return IntegerHelper::float2string($this->runtime);
+    }
+
+    public function getUsedMemory(): float
+    {
+        if ($this->usedMemory <= 0) {
+            $this->usedMemory = memory_get_usage(true);
+        }
+        return IntegerHelper::float2string($this->usedMemory / 1024 / 1024 / 1024, 2);
     }
 }

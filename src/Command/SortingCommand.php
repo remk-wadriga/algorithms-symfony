@@ -15,7 +15,8 @@ class SortingCommand extends AbstractCommand
     const TYPE_INSERTS = 3;
     const TYPE_SELECTION = 4;
     const TYPE_QUICK = 5;
-    const TYPE_QUICK_STABLE = 6;
+    const TYPE_QUICK_ARRAYS = 6;
+    const TYPE_QUICK_REPLACES = 7;
 
     protected static $defaultName = 'app:sort';
 
@@ -25,7 +26,8 @@ class SortingCommand extends AbstractCommand
         self::TYPE_INSERTS => AlgorithmHelper::TYPE_SORTING_INSERTS,
         self::TYPE_SELECTION => AlgorithmHelper::TYPE_SORTING_SELECTION,
         self::TYPE_QUICK => AlgorithmHelper::TYPE_SORTING_QUICK,
-        self::TYPE_QUICK_STABLE => AlgorithmHelper::TYPE_SORTING_QUICK_STABLE,
+        self::TYPE_QUICK_ARRAYS => AlgorithmHelper::TYPE_SORTING_QUICK_ARRAYS,
+        self::TYPE_QUICK_REPLACES => AlgorithmHelper::TYPE_SORTING_QUICK_REPLACES,
     ];
 
     protected $algorithm;
@@ -51,7 +53,7 @@ class SortingCommand extends AbstractCommand
 
     /**
      * Command php bin/console app:sort 1 100
-     *  - first param - sorting type (1 - "bubble", 2 - "gnome", 3 - "inserts", 4 - "selection", 5 - "quick", 6 - "quick stable")
+     *  - first param - sorting type (1 - "bubble", 2 - "gnome", 3 - "inserts", 4 - "selection", 5 - "quick", 6 - "quick arrays", 7 - "quick replaces")
      *  - second param - array size
      *
      * @param InputInterface $input
@@ -70,17 +72,17 @@ class SortingCommand extends AbstractCommand
         $output->writeln(sprintf('> Sorting %s-items array using "%s" algorithm...', $size, $algorithm));
 
         $sorted = $sorter->getSorted();
-        //dump($sorted);
 
         // Bubbles.     10: 45 (0.000021), 100: 4950 (0.000511), 1000: 499499 (0.049860), 10000: 49995000 (5.009871), 100000: 4999949994 (500.853912)
         // Gnome.       10: 28 (0.000020), 100: 2271 (0.000324), 1000: 246265 (0.032683), 10000: 24776991 (3.324250), 100000: 2501400549 (330.305371)
         // Inserts.     10: 21 (0.000020), 100: 2174 (0.000232), 1000: 245271 (0.022502), 10000: 24767003 (2.247104), 100000: 2501300562 (225.239058)
         // Selection.   10: 45 (0.000019), 100: 4950 (0.000143), 1000: 499500 (0.010860), 10000: 49995000 (1.008008), 100000: 4999950000 (100.108101)
-        // Quick.       10: 26 (0.000018), 100: 613 (0.000049),  1000: 9666 (0.000424),   10000: 137765 (0.005710), 100000: 1696108 (0.070662), 1000000: 21054562 (0.835028), 10000000: 246602701 (9.737353) //86, 1166
-        // Quick stable.10: 32 (0.000022), 100: 624 (0.000071),  1000: 10144 (0.000612),  10000: 152743 (0.007830), 100000: 1964580 (0.097379), 1000000: 23936123 (1.257766), 10000000: 288887953 (15.793102) //96. 1168
-        $output->writeln(sprintf('> Array sorted. First elem: %s, last elem: %s', $sorted[0], $sorted[$size - 1]));
+        // Quick.       10: 26 (0.000018), 100: 613 (0.000049),  1000: 9666 (0.000424),   10000: 137765 (0.005710),   100000: 1696108 (0.070662), 1000000: 21054562 (0.835028), 10000000: 246602701 (9.737353)
+        // Quick arr.   10: 32 (0.000022), 100: 624 (0.000071),  1000: 10144 (0.000612),  10000: 152743 (0.007830),   100000: 1964580 (0.097379), 1000000: 23936123 (1.257766), 10000000: 288887953 (15.793102)
+        // Quick rep.   10: 45 (0.000029), 100: 978 (0.000215),  1000: 16947 (0.003208),  10000: 246643 (0.043879),   100000: 3144577 (0.535502), 1000000: 40207760 (6.706050), 10000000: 448980294 (74.841619)
+        $output->writeln(sprintf('> Sorted: [%s, %s, %s, ..., %s, %s, %s]', $sorted[0], $sorted[1], $sorted[2], $sorted[$size - 3], $sorted[$size - 2], $sorted[$size - 1]));
         $output->writeln(sprintf('> Results of %s: %s (%s)', $size, $sorter->getIterationsCount(), $sorter->getRuntime()));
-        $output->writeln(sprintf('> Used memory: %s MB', memory_get_usage(true) / 1024 / 1024));
+        $output->writeln(sprintf('> Used memory: %s MB', $sorter->getUsedMemory()));
 
         return 0;
     }
