@@ -41,5 +41,6 @@ class QuickSorterArrays extends AbstractSorter
         $this->sortRecursive($bigger);
 
         $inputArray = array_merge($smaller, $equal, $bigger);
+        $this->usedMemory += memory_get_usage(true) - $startMemory;
     }
 }
