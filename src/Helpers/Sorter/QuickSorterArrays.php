@@ -12,6 +12,7 @@ class QuickSorterArrays extends AbstractSorter
 
     private function sortRecursive(array &$inputArray)
     {
+        $startMemory = memory_get_usage(true);
         $size = count($inputArray);
 
         // Exit condition

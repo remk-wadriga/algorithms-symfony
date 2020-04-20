@@ -12,6 +12,7 @@ class QuickSorterReplaces extends AbstractSorter
 
     private function sortRecursive(array &$inputArray, int $end, int $start = 0)
     {
+        $startMemory = memory_get_usage(true);
         $size = $end - $start;
 
         // Exit condition
@@ -49,5 +50,6 @@ class QuickSorterReplaces extends AbstractSorter
 
         $this->sortRecursive($inputArray, $baseIndex, $start);
         $this->sortRecursive($inputArray, $end, $baseIndex + 1);
+        $this->usedMemory += memory_get_usage(true) - $startMemory;
     }
 }
