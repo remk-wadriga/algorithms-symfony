@@ -52,7 +52,7 @@ abstract class AbstractSorter implements SorterInterface
         return IntegerHelper::float2string($this->runtime);
     }
 
-    public function getUsedMemory(): float
+    public function getUsedMemory(): string
     {
         if ($this->usedMemory <= 0) {
             $this->usedMemory = memory_get_usage(true);

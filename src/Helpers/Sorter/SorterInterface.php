@@ -14,5 +14,5 @@ interface SorterInterface
 
     public function getRuntime(): string;
 
-    public function getUsedMemory(): float;
+    public function getUsedMemory(): string;
 }
